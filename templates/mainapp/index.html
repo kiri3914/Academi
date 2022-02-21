@@ -1,0 +1,273 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="icon" href={% static "img/favicon.png" %} type="image/png" />
+    <title>Erudit leemarin</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href={% static "css/bootstrap.css" %}  />
+    <link rel="stylesheet" href={% static "css/flaticon.css" %}  />
+    <link rel="stylesheet" href={% static "css/themify-icons.css" %}  />
+    <link rel="stylesheet" href={% static "vendors/owl-carousel/owl.carousel.min.css" %}  />
+    <link rel="stylesheet" href={% static "vendors/nice-select/css/nice-select.css" %}  />
+    <!-- main css -->
+    <link rel="stylesheet" href={% static "css/style.css" %}  />
+  </head>
+
+  <body>
+    <!--================ Start Header Menu Area =================-->
+    <header class="header_area">
+      <div class="main_menu">
+        <div class="search_input" id="search_input_box">
+          <div class="container">
+            <form class="d-flex justify-content-between" method="" action="">
+              <input
+                type="text"
+                class="form-control"
+                id="search_input"
+                placeholder="Search Here"
+              />
+              <button type="submit" class="btn"></button>
+              <span
+                class="ti-close"
+                id="close_search"
+                title="Close Search"
+              ></span>
+            </form>
+          </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <a class="navbar-brand logo_h"
+              ><img src={% static "img/logo.png" %} alt=""
+            /></a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="icon-bar"></span> <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div
+              class="collapse navbar-collapse offset"
+              id="navbarSupportedContent"
+            >
+              <ul class="nav navbar-nav menu_nav ml-auto">
+
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!--================ End Header Menu Area =================-->
+
+    <!--================ Start Home Banner Area =================-->
+    <section class="home_banner_area">
+      <div class="banner_inner">
+        <div class="container">
+          <div class="row" >
+            <div class="col-lg-12">
+              <div class="banner_content text-center">
+                <p class="text-uppercase">
+                  Лучшие языковые и подготовительные курсы в Сокулуке
+                </p>
+                <h2 class="text-uppercase mt-4 mb-5">
+                  будь На шаг впереди всех
+                </h2>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================ End Home Banner Area =================-->
+
+    <!--================ Start Popular Courses Area =================-->
+    <div style='margin-top: 200px;' class="popular_courses">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="main_title">
+              <h2 class="mb-3">Наши курсы</h2>
+              <p>
+                Все курсы ведут высококвалифицированные учителя с большим опытом
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- single course -->
+          <div class="col-lg-12">
+            <div class="owl-carousel active_course">
+
+              {% for subject in subjects %}
+              <div class="single_course">
+                <div class="course_head">
+                    <a href={% url "subject_detail" subject.id %}><img class="img-fluid" src={{ subject.image.url }} alt="" /></a>
+                </div>
+                <div class="course_content">
+                  <span class="tag mb-4 d-inline-block">{{subject.duration}} месяцев</span>
+                  <h4 class="mb-3" style="height: 40px;">
+                    <a href={% url "subject_detail" subject.id %}>{{subject.subject_name}}</a>
+                  </h4>
+                  <p>
+                    {{subject.about|truncatechars:200}}
+                  </p>
+
+                </div>
+              </div>
+              {% endfor %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--================ End Popular Courses Area =================-->
+
+
+    <!--================ Start Trainers Area =================-->
+    <section class="trainer_area section_gap_top">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="main_title">
+              <h2 class="mb-3">Наши учителя</h2>
+              <p>
+                Самые высококвалифицированные учителя в Сокулуке
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center d-flex align-items-center">
+
+          {% for teacher in teachers %}
+          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+            <div class="thumb d-flex justify-content-sm-center">
+              <img class="img-fluid" src={{ teacher.image.url }} alt="" />
+            </div>
+            <div class="meta-text text-sm-center">
+              <h4>{{teacher.first_name}} {{teacher.patronymic}}</h4>
+
+              <div class="mb-4">
+                <p>
+                  {{teacher.about}}
+                </p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </section>
+    <!--================ End Trainers Area =================-->
+
+    <!--================ Start footer Area  =================-->
+    <footer class="footer-area section_gap">
+      <div class="container">
+        <div>
+          <form action="{% url 'index' %}" method="POST">
+            {% csrf_token %}
+<div class="ok_blocks">
+  <div class="ok_block">
+    <input type="text" class="form-control" name="user_name" id="user_name" placeholder="Ваше имя" required>
+    <br>
+    <input type="text" class="form-control" name="user_phone" id="user_phone"  placeholder="Ваш номер" required>
+    <input type="email" class="form-control" name="email" id="email" placeholder="Ваш email" required>
+
+  </div>
+  <div class="ok_lol">
+    <p>
+    Выберите курс
+    </p>
+    <select name="subject" id="subject">
+      {% for subject in subjects %}
+      <option value="{{ user.id }}" >{{ subject.subject_name }}</option>
+      {% endfor %}
+  </div>
+  </select>
+</div>
+
+            <button type="submit" class="hamza_loh">Отправить запрос</button>
+
+          </form>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-md-6 single-footer-widget">
+            <h4>Лучшие курсы</h4>
+            <ul>
+              <li>Английский</li>
+              <li>Подготовка к школе</li>
+              <li>Подготовка к ОРТ</li>
+              <li>Математика</li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6 single-footer-widget">
+            <h4>Наши учителя</h4>
+            <ul>
+              <li>Инна Валерьевна</li>
+              <li>Аяна Рысбаевна</li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6 single-footer-widget">
+            <h4>Контакты</h4>
+            <ul>
+              <li>+996(505)-60-50-06</li>
+              <li>+996(557)-60-50-06</li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6 single-footer-widget">
+            <h4>Адрес</h4>
+            <ul>
+              <li>С. Сокулук</li>
+              <li>Ул. Ленина</li>
+              <li>Ориентир магазин "Колобок"</li>
+              <li>За "ДК"</li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-request">
+          <p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+          </p>
+          <div class="col-lg-4 col-sm-12 footer-social">
+            <a href="https://www.instagram.com/eruditleemarin/"><i class="ti-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--================ End footer Area  =================-->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src={% static "js/jquery-3.2.1.min.js" %}></script>
+    <script src={% static "js/popper.js" %}></script>
+    <script src={% static "js/bootstrap.min.js" %}></script>
+    <script src={% static "vendors/nice-select/js/jquery.nice-select.min.js" %}></script>
+    <script src={% static "vendors/owl-carousel/owl.carousel.min.js" %}></script>
+    <script src={% static "js/owl-carousel-thumb.min.js" %}></script>
+    <script src={% static "js/jquery.ajaxchimp.min.js" %}></script>
+    <script src={% static "js/mail-script.js" %}></script>
+    <!--gmaps Js-->
+    <script src="{% static 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE' %}"></script>
+    <script src={% static "js/gmaps.min.js" %}></script>
+    <script src={% static "js/theme.js" %}></script>
+  </body>
+</html>

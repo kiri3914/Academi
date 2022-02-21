@@ -21,7 +21,7 @@ def index(request):
             email = request.POST['email']
             subject_id = request.POST['subject']
             subject = Subject.objects.get(id=subject_id)
-            print(f'{user_name} на {subject} ', user_phone,
+            print(f'{user_name} на {subject.subject_name} ', user_phone,
                   DEFAULT_FROM_EMAIL, RECIPIENTS_EMAIL)
             try:
                 send_mail(f'{user_name}  {user_phone} ', user_phone,

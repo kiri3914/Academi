@@ -1,11 +1,11 @@
-import os
 from pathlib import Path
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-ie1!*(t=s&q$98_=*gb28-12r9s$k39*c%jm*e_sndy2e40+@j'
+SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -84,18 +84,18 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR / 'static')
+STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-RECIPIENTS_EMAIL = ['kiri.bekos@gamil.com']  # замените на свою почту
-DEFAULT_FROM_EMAIL = 'itcbootcamp.kiri@gmail.com'  # замените на свою почту
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+RECIPIENTS_EMAIL = [config('RECIPIENTS_EMAIL')]# замените на свою почту
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL') # замените на свою почту
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 

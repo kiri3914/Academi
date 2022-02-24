@@ -5,3 +5,5 @@ db.sqlite3
 *py[code]
 .env
 .DS_Store
+settings_conf.txt
+/.idea

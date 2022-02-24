@@ -1,0 +1,14 @@
+RECIPIENTS_EMAIL = 'itcbootcamp.kiri@gmail.com'
+DEFAULT_FROM_EMAIL = 'itcbootcamp.kiri@gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+
+
+# for index.html subject_detail
+<!--<a href="{% url 'subject_detail' subject.id %}"><img class="img-fluid" src={{ subject.image.url }} alt="" /></a>-->
+<a href={% url "subject_detail" subject.id %}>{{subject.subject_name}}</a>

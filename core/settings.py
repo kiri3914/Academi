@@ -18,7 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainapp',
 
-    'sendgrid'
+    # 'sendgrid'
 ]
 
 MIDDLEWARE = [
@@ -58,6 +58,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'develops_today_db',
+#         'USER': 'develops_today_user',
+#         'PASSWORD': 'develops_today_password',
+#         'HOST': 'postgresdb',
+#         'PORT': '5432',
+#     }
+# }
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -90,12 +101,27 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-RECIPIENTS_EMAIL = [config('RECIPIENTS_EMAIL')]# замените на свою почту
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL') # замените на свою почту
 EMAIL_BACKEND = config('EMAIL_BACKEND')
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+
+
+
+
+
+
+
+######################################## на функциях  + sendgrid #################################################
+# RECIPIENTS_EMAIL = [config('RECIPIENTS_EMAIL')]# замените на свою почту
+# DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL') # замените на свою почту
+# EMAIL_BACKEND = config('EMAIL_BACKEND')
+# EMAIL_HOST = config('EMAIL_HOST')
+# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+# EMAIL_PORT = config('EMAIL_PORT')
+# EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 

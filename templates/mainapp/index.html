@@ -119,12 +119,12 @@
               {% for subject in subjects %}
               <div class="single_course">
                 <div class="course_head">
-                    <a href={% url "subject_detail" subject.id %}><img class="img-fluid" src={{ subject.image.url }} alt="" /></a>
+                  <a href="#"><img class="img-fluid" src="{{ subject.image.url }}" alt="" /></a>
                 </div>
                 <div class="course_content">
                   <span class="tag mb-4 d-inline-block">{{subject.duration}} месяцев</span>
                   <h4 class="mb-3" style="height: 40px;">
-                    <a href={% url "subject_detail" subject.id %}>{{subject.subject_name}}</a>
+                    <a href="#">{{subject.subject_name}}</a>
                   </h4>
                   <p>
                     {{subject.about|truncatechars:200}}

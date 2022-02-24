@@ -1,10 +1,17 @@
 from django.urls import path
-from mainapp.views import (
-                            index,
-                            subject_detail)
-
+from .views import ContactView
 
 urlpatterns = [
-    path('', index, name='index'),
-    path('subject/<int:subject_id>/', subject_detail, name='subject_detail'),
+    path('', ContactView.as_view(), name='index' )
 ]
+
+
+
+######################################## на функциях  + sendgrid #################################################
+# from mainapp.views import (
+#                             index,
+#                             subject_detail)
+# urlpatterns = [
+#     path('', index, name='index'),
+#     path('subject/<int:subject_id>/', subject_detail, name='subject_detail'),
+# ]
